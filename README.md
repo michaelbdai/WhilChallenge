@@ -6,6 +6,8 @@
 * Redux-Saga
 * Redux-Persist
 * react-native-router-flux
+## Compatibility
+It is optimized for ios using Xcode. It has not been tested on Android simulator. However, any function not supported by Android has been avoided. For example, scrollEventThrottle for scrollView is not used.
 
 ## Features Highlight
 * Persist state so user can save their favorite news. In details view, user can mark and unmark news as favorite. Once marked, in the list view, the title text color becomes red.
