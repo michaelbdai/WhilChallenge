@@ -14,6 +14,9 @@ export default class List extends Component {
         let flag = false;
         let offset = 0;
         return (e) => {
+          if (e.nativeEvent.contentOffset.y < 0) {
+            this.props.handleRefresh();
+          }
           if (!flag && offset < e.nativeEvent.contentOffset.y) {
             console.log('Loading more items');
             flag = true;

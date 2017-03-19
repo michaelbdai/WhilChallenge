@@ -3,6 +3,7 @@ import { refreshList } from '../actions';
 
 
 export const fetchListGetRequest = (username, password) => {
+  console.log('in Saga, attempting get request');
   const url = 'https://www.reddit.com/.json';
   return new Promise((resolve) => {
     fetch (url)
