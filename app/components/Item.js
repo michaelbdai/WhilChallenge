@@ -1,44 +1,104 @@
-import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import React, { Component } from 'react';
+import { View, TouchableHighlight, Text, StyleSheet, Image } from 'react-native';
+import { Actions as NavigationActions } from 'react-native-router-flux';
 
-export default class List extends Component {
-
-  renderItem = (text, i) => {
-    const {onPressItem} = this.props
-
-    return (
-      <TouchableOpacity
-        style={styles.item}
-        onPress={() => onPressItem(i)}
-      >
-        <Text>{text}</Text>
-      </TouchableOpacity>
-    )
+export default class Item extends Component {
+  constructor (props) {
+    super(props);
+    // console.log('loading item');
   }
-
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldupdate', nextProps.favs[nextProps.itemId]);
+    if (this.props.itemId === nextProps.itemId &&
+      this.props.favs[this.props.itemId] === nextProps.favs[nextProps.itemId]) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  handleSelect(itemId) {
+    NavigationActions.detailScreen({selectedId: itemId});
+  }
   render() {
-    const {list} = this.props
-
+    let itemId = this.props.itemId;
+    let title = this.props.titles[itemId].length < 40 ?
+      this.props.titles[itemId] : `${this.props.titles[itemId].slice(0, 40)} ...`;
+    console.log(this.props.favs[this.props.itemId]);
     return (
-      <View>
-        {list.map(this.renderItem)}
+      <View style={styles.container} >
+        <TouchableHighlight 
+          onPress={() => this.handleSelect(this.props.itemId)}
+          style={styles.imgContainer}
+        >
+          <Image
+            style={styles.image}
+            source={{uri: this.props.thumbnails[itemId]}}
+          />          
+        </TouchableHighlight>
+        <View style={styles.textContainer}>
+          <TouchableHighlight 
+            onPress={() => this.handleSelect(this.props.itemId)}
+          >
+            <Text style={
+              this.props.favs[this.props.itemId] ?
+              styles.redTitle :
+              styles.title
+            }>
+              {title}
+            </Text>
+          </TouchableHighlight>  
+          <Text style={styles.details}>
+            {`Author: ${this.props.authors[itemId]}`}
+          </Text>
+          <Text style={styles.details}>
+            {`Votes: ${this.props.ups[itemId]}`}
+          </Text>
+        </View>
       </View>
     )
   }
 }
 
-
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: 'whitesmoke',
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    backgroundColor: '#F5FCFF',
+    marginTop: 5,
     marginBottom: 5,
-    padding: 15,
   },
-})
-const sampleData = {
-  "thumbnail": "https://a.thumbs.redditmedia.com/yyO6rGE7CrWwnx0OIdYClfG5yasN55p5ig-B16KZuk0.jpg",
-  "author": "plasmabitch",
-  "title": "PSA: Trump's budget would strip $3 billion from the Community Development Block Grant program, which supports a variety of community-development and anti-poverty programs. Those include Meals on Wheels, which provided 219 million meals to 2.4 million seniors in 2016. r/all should see the truth.",
-  "ups": 10128,
+  textContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    backgroundColor: '#F5FCFF',
+    margin: 5,
+  },
+  image: {
+    marginLeft: 10,
+    marginTop: 5,
+    width: 100, 
+    height: 100,
 
-}
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'left',
+    marginLeft: 5,
+    marginTop: 5,
+  },
+  redTitle: {
+    color: 'red',
+    fontSize: 20,
+    textAlign: 'left',
+    marginLeft: 5,
+    marginTop: 5,
+  },  
+  details: {
+    textAlign: 'left',
+    color: '#333333',
+    margin: 3
+  },
+});
+

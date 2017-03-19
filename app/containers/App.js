@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import {AsyncStorage} from 'react-native';
@@ -11,9 +11,7 @@ import rootReducer from '../reducers';
 import createSagaMiddleware from 'redux-saga';
 import saga from '../sagas';
 
-import { fetchList } from '../actions';
-import TestA from '../components/TestA';
-
+import Loading from '../components/Loading';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -25,9 +23,7 @@ const store = createStore(
   )
 )
 
-
 sagaMiddleware.run(saga);
-
 
 class App extends Component {
   constructor() {
@@ -39,18 +35,21 @@ class App extends Component {
       store, 
       {storage: AsyncStorage},
       () => {
-        this.setState({ rehydrated: true }, () => {
-      },
-
-      )
-    })
+        this.setState({ rehydrated: true }, () => {})
+      }
+    )
   }
   render() {
-    return (
-      <Provider store={store}>  
-        <RootContainer />
-      </Provider>
-    )
+    if (this.state.rehydrated) {
+
+      return (
+        <Provider store={store}>  
+          <RootContainer />
+        </Provider>
+      )
+    } else {
+      return (<Loading />)
+    }
   }
      
 }

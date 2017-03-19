@@ -5,15 +5,9 @@ import { connect } from 'react-redux';
 import { Scene, Router } from 'react-native-router-flux';
 
 // containers
-// import ListScreen from './ListScreen';
-// import DetailScreen from './DetailScreen';
-import { fetchList } from '../actions';
-// Styles
-// import styles from './Styles/RootContainerStyle';
-
-// Test
-import TestA from '../components/TestA';
-import TestB from '../components/TestB';
+import ListScreen from './ListScreen';
+import DetailScreen from './DetailScreen';
+import { fetchList, resetState } from '../actions';
 
 class RootContainer extends Component {
   constructor(props) {
@@ -23,7 +17,7 @@ class RootContainer extends Component {
   componentWillMount(){
     const dataArray = this.props.dataArray;
     const initialFetch = this.props.initialFetch;
-    console.log(dataArray);
+    console.log('favs in persist', this.props.favs)
     if (dataArray.length === 0) {
       this.props.initialFetch();
     }
@@ -35,13 +29,13 @@ class RootContainer extends Component {
           <Scene
             initial
             key="listScreen"
-            component={TestA}
+            component={ListScreen}
             title="List"
           />
           <Scene
             key="detailScreen"
-            component={TestB}
-            title="details"
+            component={DetailScreen}
+            title="Details"
           />
         </Scene>
       </Router>
@@ -50,12 +44,16 @@ class RootContainer extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   initialFetch: () => {
-      console.log('fetching...')
+      // console.log('fetching...')
       dispatch(fetchList());
     },
+  cleanData: () => {
+      dispatch(resetState());
+    }
 })
 const mapStateToProps = (state) => ({
   dataArray: state.dataArray,
+  favs: state.favs,
 })
 RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainer)
 export default RootContainer
