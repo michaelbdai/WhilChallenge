@@ -7,12 +7,9 @@ export const refreshList = (dataArray, thumbnails, authors, titles, ups) => ({
   titles,
   ups,
 });
-export const fetchList = () => {
-  console.log('fetchList action');
-  return {
+export const fetchList = () => ({
     type: 'FETCH_LIST',
-  }
-};
+});
 export const switchFavs = (itemId) => ({
   type: 'SWITCH_FAVS',
   itemId,

@@ -17,10 +17,10 @@ class RootContainer extends Component {
   componentWillMount(){
     const dataArray = this.props.dataArray;
     const initialFetch = this.props.initialFetch;
-    console.log('favs in persist', this.props.favs)
-    if (dataArray.length === 0) {
-      this.props.initialFetch();
-    }
+    // if (dataArray.length === 0) {
+    //   this.props.initialFetch();
+    // }
+    this.props.initialFetch();
   }  
   render() {
     return (
@@ -44,7 +44,6 @@ class RootContainer extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   initialFetch: () => {
-      // console.log('fetching...')
       dispatch(fetchList());
     },
   cleanData: () => {

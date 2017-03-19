@@ -12,7 +12,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleFavChange: (id) => {
-    console.log('fav chang-----', id)
     dispatch(switchFavs(id));
   }
 

@@ -17,8 +17,6 @@ import {
 export default class Details extends Component {
   constructor(props) {
     super(props);
-    // console.log(this.props)
-
   }
   render() {
     let itemId = this.props.selectedId;
@@ -38,10 +36,12 @@ export default class Details extends Component {
           {`Votes: ${this.props.ups[itemId]}`}
         </Text>
         <TouchableHighlight onPress={() => this.props.handleFavChange(itemId)}>
+          <View style={styles.button}>
           { this.props.favs[itemId] ? 
-            (<Text> Unfavorite </Text>) :
-            (<Text> Mark as favorite </Text>)
+            (<Text style={styles.buttonText}> Unfavorite </Text>) :
+            (<Text style={styles.buttonText}> Mark as favorite </Text>)
           }
+          </View>
         </TouchableHighlight>
       </View>
     );
@@ -52,10 +52,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
     backgroundColor: '#F5FCFF',
-    marginTop: 5,
+    marginTop: 20,
     marginBottom: 5,
+    alignItems: 'center'
   },
   textContainer: {
     flex: 1,
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   },
   image: {
     marginLeft: 10,
-    marginTop: 5,
+    marginTop: 50,
     width: 300, 
     height: 300,
 
@@ -82,4 +83,14 @@ const styles = StyleSheet.create({
     color: '#333333',
     margin: 3
   },
+  button: {
+    backgroundColor: 'whitesmoke',
+    padding: 10,
+    borderColor: 'black',
+    borderWidth: 3,
+    borderRadius: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+  }  
 });

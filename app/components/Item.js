@@ -5,10 +5,8 @@ import { Actions as NavigationActions } from 'react-native-router-flux';
 export default class Item extends Component {
   constructor (props) {
     super(props);
-    // console.log('loading item');
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldupdate', nextProps.favs[nextProps.itemId]);
     if (this.props.itemId === nextProps.itemId &&
       this.props.favs[this.props.itemId] === nextProps.favs[nextProps.itemId]) {
       return false;
@@ -23,7 +21,6 @@ export default class Item extends Component {
     let itemId = this.props.itemId;
     let title = this.props.titles[itemId].length < 40 ?
       this.props.titles[itemId] : `${this.props.titles[itemId].slice(0, 40)} ...`;
-    console.log(this.props.favs[this.props.itemId]);
     return (
       <View style={styles.container} >
         <TouchableHighlight 
@@ -66,7 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: '#F5FCFF',
     marginTop: 5,
-    marginBottom: 5,
   },
   textContainer: {
     flex: 1,

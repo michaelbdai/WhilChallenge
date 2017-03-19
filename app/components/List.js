@@ -31,13 +31,6 @@ export default class List extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={this.props.handleRefresh}
-          >
-            <Text style={styles.buttonText}>Refresh</Text>
-          </TouchableOpacity>
-
         <ScrollView onScroll={this.handleScroll} >
         {this.props.dataArray.slice(0, this.state.lastItem).map(id => (
           <ItemContainer
@@ -45,6 +38,12 @@ export default class List extends Component {
             itemId={id}
           />))}
         </ScrollView>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={this.props.handleRefresh}
+        >
+          <Text style={styles.buttonText}>Refresh</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -58,12 +57,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'whitesmoke',
-    // margin: 5,
+    margin: 5,
     padding: 15,
+
   },
   buttonText: {
     marginTop: 7,
     textAlign: 'center',
+    fontSize: 20,
   }
 })
 

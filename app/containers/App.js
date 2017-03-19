@@ -4,13 +4,11 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import {AsyncStorage} from 'react-native';
+import createSagaMiddleware from 'redux-saga';
 
+import saga from '../sagas';
 import RootContainer from './RootContainer';
 import rootReducer from '../reducers';
-
-import createSagaMiddleware from 'redux-saga';
-import saga from '../sagas';
-
 import Loading from '../components/Loading';
 
 const sagaMiddleware = createSagaMiddleware();
