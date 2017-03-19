@@ -18,6 +18,7 @@ export default class Item extends Component {
     NavigationActions.detailScreen({selectedId: itemId});
   }
   render() {
+    console.log('rendering item: ', this.props.itemId);
     let itemId = this.props.itemId;
     let title = this.props.titles[itemId].length < 40 ?
       this.props.titles[itemId] : `${this.props.titles[itemId].slice(0, 40)} ...`;
@@ -54,7 +55,7 @@ export default class Item extends Component {
       </View>
     )
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {

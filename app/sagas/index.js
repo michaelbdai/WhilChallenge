@@ -26,12 +26,12 @@ export const fetchListGetRequest = (username, password) => {
           });
         resolve({dataArray, thumbnails, authors, titles, ups});
       });
-  })
+  });
 };
 
 function* fetchList() {
   while (true) {
-    yield take('FETCH_LIST')
+    yield take('FETCH_LIST');
     const {dataArray, thumbnails, authors, titles, ups} = yield call(fetchListGetRequest);
     yield put(refreshList(dataArray, thumbnails, authors, titles, ups));
   }

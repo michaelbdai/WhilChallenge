@@ -26,7 +26,7 @@ export default class WhilChallenge extends Component {
       </View>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {

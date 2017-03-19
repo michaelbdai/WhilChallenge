@@ -8,7 +8,7 @@ export default class List extends Component {
     super(props);
     this.state = {
       lastItem: 7,
-    }
+    };
     this.handleScroll = 
       (() => {
         let flag = false;
@@ -50,8 +50,8 @@ export default class List extends Component {
       </View>
     )
   }
-}
-var {height, width} = Dimensions.get('window')
+};
+var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     marginTop: 50,
@@ -69,5 +69,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
   }
-})
+});
 

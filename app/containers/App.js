@@ -19,7 +19,7 @@ const store = createStore(
     applyMiddleware(sagaMiddleware),
     autoRehydrate()
   )
-)
+);
 
 sagaMiddleware.run(saga);
 
@@ -50,7 +50,7 @@ class App extends Component {
     }
   }
      
-}
+};
 
 export default App;
 

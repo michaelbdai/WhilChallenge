@@ -5,7 +5,7 @@ const initialState = {
   titles: {},
   ups: {},
   favs: {},
-}
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -40,6 +40,6 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 
-}
+};
 
 export default rootReducer;

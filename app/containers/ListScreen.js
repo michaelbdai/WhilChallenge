@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
   authors: state.authors,
   titles: state.titles,
   ups: state.ups,  
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   handleRefresh: () => {
@@ -17,6 +17,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleSelect: (id) => {
     dispatch(selectItem(id));
   }
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

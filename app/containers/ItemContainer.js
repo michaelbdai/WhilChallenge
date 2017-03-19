@@ -8,14 +8,14 @@ const mapStateToProps = (state) => ({
   titles: state.titles,
   ups: state.ups,
   favs: state.favs
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
   handleSelect: (id) => {
     dispatch(switchFavs(id));
   }
 
-})
+});
 
-const ItemContainer = connect(mapStateToProps, mapDispatchToProps)(Item)
+const ItemContainer = connect(mapStateToProps, mapDispatchToProps)(Item);
 export default ItemContainer;

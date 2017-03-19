@@ -11,7 +11,7 @@ import { fetchList, resetState } from '../actions';
 
 class RootContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
   }  
   componentWillMount(){
@@ -41,7 +41,7 @@ class RootContainer extends Component {
       </Router>
     )
   }
-}
+};
 const mapDispatchToProps = (dispatch) => ({
   initialFetch: () => {
       dispatch(fetchList());
@@ -49,11 +49,11 @@ const mapDispatchToProps = (dispatch) => ({
   cleanData: () => {
       dispatch(resetState());
     }
-})
+});
 const mapStateToProps = (state) => ({
   dataArray: state.dataArray,
   favs: state.favs,
-})
-RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainer)
-export default RootContainer
+});
+RootContainer = connect(mapStateToProps, mapDispatchToProps)(RootContainer);
+export default RootContainer;
 

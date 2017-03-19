@@ -32,6 +32,9 @@ It is optimized for ios using Xcode. It has not been tested on Android simulator
       let flag = false;
       let offset = 0;
       return (e) => {
+        if (e.nativeEvent.contentOffset.y < 0) {
+          this.props.handleRefresh();
+        }
         if (!flag && offset < e.nativeEvent.contentOffset.y) {
           console.log('Loading more items');
           flag = true;
@@ -45,4 +48,15 @@ It is optimized for ios using Xcode. It has not been tested on Android simulator
         }
       }
     })().bind(this);
+}
 ```
+* The above code also enables pull-to-refresh feature. when the user pull the list down, e.nativeEvent.contentOffset.y < 0, it triggers this.props.handleRefresh(); The refresh button can trigger refresh manually.
+
+```
+  if (e.nativeEvent.contentOffset.y < 0) {
+    this.props.handleRefresh();
+  }
+```
+
+
+
